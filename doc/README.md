@@ -28,7 +28,7 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 
 # bundle install実行
-RUN bundle install
+RUN docker-compose build --no-cache
 
 # ビルドコンテキストの内容を全てmyappにコピー
 COPY . /myapp
@@ -92,25 +92,25 @@ default: &default
   # -------- ここまで --------
 ```
 
-## デタッチモード（バックグラウンド）で起動
+# デタッチモード（バックグラウンド）で起動
 
 ```
 docker-compose up -d
 ```
 
-## データベース作成コマンド
-
-```
-docker-compose run web rails db:create
-```
-
-※bundle installが反映されない場合
+# bundle installが反映されない場合の対応
 
 ```
 docker-compose build --no-cache
 ```
 
-# Scaffold
+# データベース作成コマンド
+
+```
+docker-compose run web rails db:create
+```
+
+# Scaffoldにて簡易的なアプリケーション作成
 
 ```
 docker-compose run web bin/rails g scaffold User name:string

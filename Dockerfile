@@ -15,7 +15,7 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 
 # bundle install実行
-RUN docker-compose build --no-cache
+RUN bundle install
 
 # ビルドコンテキストの内容を全てmyappにコピー
 COPY . /myapp
