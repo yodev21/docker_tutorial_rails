@@ -139,3 +139,43 @@ docker-compose down
 ```
 docker-compose run web bash
 ```
+
+# Go言語を使用してみる
+
+ディレクトリ移動
+
+```
+cd doc/golang/
+```
+
+```Dockerfile
+FROM golang:1.9
+
+RUN mkdir /echo
+COPY main.go /echo
+CMD ["go", "run", "/echo/main.go"]
+```
+
+# イメージのビルド
+
+```
+docker image build -t example/echo:latest .
+```
+
+# イメージの確認
+
+```
+docker image ls
+```
+
+# コンテナの起動
+
+```
+docker container run -d -p 9000:8080 example/echo:latest
+```
+
+# GETリクエストの確認
+
+```
+curl http://localhost:9000
+```
